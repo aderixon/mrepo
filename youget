@@ -314,7 +314,10 @@ def mirroryou_sles10(url, path):
     ### Setting up connection
     host = urlparse.urlparse(url)[1]
     auth_handler = urllib2.HTTPDigestAuthHandler()
-    auth_handler.add_password('Express', host, op.username, op.password)
+    #auth_handler.add_password('Express', host, op.username, op.password)
+    # Fix realm for SLES 11 download
+    # N.B.: may break sles10 support
+    auth_handler.add_password('Digest Authentication for nu.novell.com', host, op.username, op.password)
     opener = urllib2.build_opener(auth_handler)
     opener.addheaders = [('User-agent', 'Mozilla/5.0')]
 
