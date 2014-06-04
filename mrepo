@@ -254,6 +254,7 @@ class Config:
 
         self.rhnlogin = self.getoption('main', 'rhnlogin', None)
         self.rhngetoptions = self.getoption('main', 'rhnget-options', '')
+        self.yougetoptions = self.getoption('main', 'youget-options', '')
         self.rhngetcleanup = self.getoption('main', 'rhnget-cleanup', 'yes') not in disable
         self.rhngetdownloadall = self.getoption('main', 'rhnget-download-all', 'no') not in disable
 
@@ -1471,7 +1472,7 @@ def mirroryouget(url, path, dist):
 
     url = url.replace('you://', 'https://')
 
-    opts = cf.rhngetoptions
+    opts = cf.yougetoptions
     if op.verbose >= 3:
         opts = opts + ' -v' * (op.verbose - 3)
     if op.dryrun:
